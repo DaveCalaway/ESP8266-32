@@ -2,7 +2,7 @@
 
 **Install:** https://tinyurl.com/y2r8le63  
 
-** Connect:**
+**Connect:**
 ```
 screen /dev/tty.NAME 115200
 ```
