@@ -27,7 +27,7 @@ void bothCylinder() {
     xTaskCreatePinnedToCore(
         OTAcheck,
         "Task_1",
-        8192,
+        10000,
         NULL,
         1,
         &Task1,
