@@ -5,15 +5,15 @@
 #define ledPin 2  // internal LED
 // ==== OTA DEF ====
 #define UPDATE_BIN_URL ""
-#define UPDATE_JSON_URL "https://esp32tutorial.netsons.org/https_ota/firmware.json"
+#define UPDATE_JSON_URL "https://github.com/DaveCalaway/ESP8266-32/blob/master/Arduino/ESP32/RTOS/OTA_HTTP/firmware.json"
 String firwareVersion;
 // =================
 
 const size_t capacity = JSON_OBJECT_SIZE(1) + 30;
 DynamicJsonDocument doc(capacity);
 
-const char *ssid = "xxx";
-const char *pass = "yyy";
+const char *ssid = "715C4L1";
+const char *pass = "arbibbio123";
 
 void OTAcheck(void *parameter);  // Function Declaration, now i can put the function on the bottom of the code
 
