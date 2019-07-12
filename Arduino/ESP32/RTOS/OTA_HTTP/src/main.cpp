@@ -4,7 +4,7 @@
 
 #define ledPin 2  // internal LED
 // ==== OTA DEF ====
-#define UPDATE_BIN_URL ""
+#define UPDATE_BIN_URL "https://github.com/DaveCalaway/ESP8266-32/blob/master/Arduino/ESP32/RTOS/OTA_HTTP/firmware.bin"
 #define UPDATE_JSON_URL "https://github.com/DaveCalaway/ESP8266-32/blob/master/Arduino/ESP32/RTOS/OTA_HTTP/firmware.json"
 String firwareVersion;
 // =================
