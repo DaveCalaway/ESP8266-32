@@ -71,70 +71,71 @@ void setup() {
 //
 //--- TASK1 ON CORE0 ---
 // Check update task
-void OTAcheck(void *parameter){
-    bool isNew = 0;
-    String JSONpayload;
-    WiFiClient client;
-    HTTPClient http;
+void OTAcheck(void *parameter) {
+    for (;;) {
+        bool isNew = 0;
+        String JSONpayload;
+        WiFiClient client;
+        HTTPClient http;
 
-    // The line below is optional. It can be used to blink the LED on the board during flashing
-    // The LED will be on during download of one buffer of data from the network. The LED will
-    // be off during writing that buffer to flash
-    // On a good connection the LED should flash regularly. On a bad connection the LED will be
-    // on much longer than it will be off. Other pins than LED_BUILTIN may be used. The second
-    // value is used to put the LED on. If the LED is on with HIGH, that value should be passed
-    httpUpdate.setLedPin(ledPin, LOW);
+        // The line below is optional. It can be used to blink the LED on the board during flashing
+        // The LED will be on during download of one buffer of data from the network. The LED will
+        // be off during writing that buffer to flash
+        // On a good connection the LED should flash regularly. On a bad connection the LED will be
+        // on much longer than it will be off. Other pins than LED_BUILTIN may be used. The second
+        // value is used to put the LED on. If the LED is on with HIGH, that value should be passed
+        httpUpdate.setLedPin(ledPin, LOW);
 
-    // downloading the json file with the last version
-    http.begin(UPDATE_JSON_URL);  //HTTP
-    int httpCode = http.GET();
-    if (httpCode == HTTP_CODE_OK) {
-        JSONpayload = http.getString();
-        Serial.println(JSONpayload);
-    }
-    http.end();
-
-    // check the software version
-    DeserializationError error = deserializeJson(doc, JSONpayload);  // Deserialize the JSON document
-
-    // Test if parsing succeeds.
-    if (error) {
-        Serial.print(F("                deserializeJson() failed: "));
-        Serial.print(error.c_str());
-        return;
-    } else {
-        double lastFirware = doc["version"]; // extract the version
-        // is it new?
-        if (firwareVersion.toFloat() > lastFirware) {
-            firwareVersion = lastFirware;
-            Serial.print("              New firmware available: ");
-            Serial.println(lastFirware);
-            isNew = 1;
-        } else
-            Serial.print("              No firmware available");
-    }
-
-    if (isNew) {
-        t_httpUpdate_return ret = httpUpdate.update(client, UPDATE_BIN_URL);
-        // Or:
-        //t_httpUpdate_return ret = httpUpdate.update(client, "server", 80, "file.bin");
-
-        switch (ret) {
-            case HTTP_UPDATE_FAILED:
-                Serial.printf("              HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
-                break;
-
-            case HTTP_UPDATE_NO_UPDATES:
-                Serial.println("              HTTP_UPDATE_NO_UPDATES");
-                break;
-
-            case HTTP_UPDATE_OK:
-                Serial.println("              HTTP_UPDATE_OK");
-                break;
+        // downloading the json file with the last version
+        http.begin(UPDATE_JSON_URL);  //HTTP
+        int httpCode = http.GET();
+        if (httpCode == HTTP_CODE_OK) {
+            JSONpayload = http.getString();
+            Serial.println(JSONpayload);
         }
-    }
+        http.end();
 
-    delay(5000);
+        // check the software version
+        DeserializationError error = deserializeJson(doc, JSONpayload);  // Deserialize the JSON document
+
+        // Test if parsing succeeds.
+        if (error) {
+            Serial.print(F("                deserializeJson() failed: "));
+            Serial.print(error.c_str());
+        } else {
+            double lastFirware = doc["version"];  // extract the version
+            // is it new?
+            if (firwareVersion.toFloat() > lastFirware) {
+                firwareVersion = lastFirware;
+                Serial.print("              New firmware available: ");
+                Serial.println(lastFirware);
+                isNew = 1;
+            } else
+                Serial.print("              No firmware available");
+        }
+
+        if (isNew) {
+            t_httpUpdate_return ret = httpUpdate.update(client, UPDATE_BIN_URL);
+            // Or:
+            //t_httpUpdate_return ret = httpUpdate.update(client, "server", 80, "file.bin");
+
+            switch (ret) {
+                case HTTP_UPDATE_FAILED:
+                    Serial.printf("              HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
+                    break;
+
+                case HTTP_UPDATE_NO_UPDATES:
+                    Serial.println("              HTTP_UPDATE_NO_UPDATES");
+                    break;
+
+                case HTTP_UPDATE_OK:
+                    Serial.println("              HTTP_UPDATE_OK");
+                    break;
+            }
+        }
+
+        delay(5000);
+    }
 }
 
 //
