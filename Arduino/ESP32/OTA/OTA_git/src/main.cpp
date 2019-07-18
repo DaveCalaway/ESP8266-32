@@ -3,7 +3,7 @@
 #include <PubSubClient.h>
 
 #define ledPin 2  // build in
-#define HTTP_OTA ""
+#define HTTP_OTA "http://github.com/DaveCalaway/ESP8266-32/blob/master/Arduino/ESP32/OTA/OTA_git/firmware.bin"
 
 //
 // --- WIFI ---
@@ -147,7 +147,7 @@ void loop() {
     }
 
     digitalWrite(ledPin, HIGH);
-    delay(200);
+    delay(500);
     digitalWrite(ledPin, LOW);
-    delay(200);
+    delay(500);
 }
