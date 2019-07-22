@@ -4,7 +4,7 @@
 Every certificant has a specific expire data.  
 
 1. Go to We Transfer site
-2. Click to the little lock on the left of the URL link
+2. Click to the little lock on the left of the URL link [image](https://raw.githubusercontent.com/DaveCalaway/ESP8266-32/master/Arduino/ESP32/OTA/images/CACertificate.jpg)
 3. Download the CACertificate with the extension .crt
 4. Open the CACertificate and extract the "PEM" file
 5. Make it readable for you sketch, example:  
@@ -74,5 +74,5 @@ The link to the file stay available for a few downloads.
 
 1. Upload the file.bin to the We Transfer
 2. Go to the download link and open the inspector -> network
-3. Now press download button and copy the url that you can you find under "Request URL" 
+3. Now press download button and copy the url that you can you find under "Request URL"  [image](https://raw.githubusercontent.com/DaveCalaway/ESP8266-32/master/Arduino/ESP32/OTA/images/weTran.jpg)
 4. Copy that link in to the sketch under "HTTPS_OTA"
