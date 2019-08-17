@@ -1,9 +1,9 @@
-# OTA We Tranfer
+# OTA 
 
 ## Get the CACertificate
 Every certificant has a specific expire data.  
 
-1. Go to We Transfer site
+1. Go to We Transfer site or Git project site ( for GitHub the real link is not https://**github**.com but https://**raw.githubusercontent**.com ) 
 2. Click to the little lock on the left of the URL link [image](https://raw.githubusercontent.com/DaveCalaway/ESP8266-32/master/Arduino/ESP32/OTA/images/CACertificate.jpg)
 3. Download the CACertificate with the extension .crt
 4. Open the CACertificate and extract the "PEM" file
@@ -39,7 +39,7 @@ c7o835DLAFshEWfC7TIe3g==
 ```
 After:  
 ```
------BEGIN CERTIFICATE-----
+"-----BEGIN CERTIFICATE-----\n"
 "MIIEXDCCA0SgAwIBAgINAeOpMBz8cgY4P5pTHTANBgkqhkiG9w0BAQsFADBMMSAw\n"
 "HgYDVQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFs\n"
 "U2lnbjETMBEGA1UEAxMKR2xvYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEy\n"
@@ -66,13 +66,13 @@ After:
 "c7o835DLAFshEWfC7TIe3g==\n"
 "-----END CERTIFICATE-----\n"
 ```
-6. Copy the readable CACertificate to the sketch under ""rootCACertificate"
+6. Copy the readable CACertificate to the sketch under "rootCACertificate"
 
 
 ## Get the link
 The link to the file stay available for a few downloads.  
 
-1. Upload the file.bin to the We Transfer
+1. Upload the file.bin to the We Transfer or GitHub ( for GitHub the real link is not https://**github**.com but https://**raw.githubusercontent**.com ) 
 2. Go to the download link and open the inspector -> network
 3. Now press download button and copy the url that you can you find under "Request URL"  [image](https://raw.githubusercontent.com/DaveCalaway/ESP8266-32/master/Arduino/ESP32/OTA/images/weTran.jpg)
 4. Copy that link in to the sketch under "HTTPS_OTA"
