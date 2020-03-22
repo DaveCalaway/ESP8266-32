@@ -1,3 +1,10 @@
+/*
+On Core1 you have the standard Arduino main() function. 
+On Core0 you have the second task called codeForTask1.
+
+The two tasks, on different cores, share a value called counter.
+*/
+
 #include <WiFi.h>
 #define ledPin 2  // internal LED
 
